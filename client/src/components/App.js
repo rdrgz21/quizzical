@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
-import qCard from './qCard';
+import QCard from './QCard';
 
 function App() {
+
+  let [quizData, loadQuizData] = useState([]);
+
+  console.log(`This is the initial quizData: ${quizData}`);
 
   useEffect( () => {
     getApi();
 
   }, [])
-
-  const createQuestion = (quizDatum, index) => {
+  
+  const createQuestionCard = (quizDatum, index) => {
     console.log("Extracting questions");
+    console.log(quizDatum.question);
+
     return (
-      <qCard
+      <QCard 
+        key={index} 
+        qNo={index+1} 
         text={quizDatum.question}
-        key={index} />
+        answer1="Answer 1"
+        answer2="Answer 2"
+        answer3="Answer 3" 
+      />
     )
   }
 
@@ -24,25 +35,17 @@ function App() {
     const res = await axios.get('https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple')
     console.log(res.data);
 
-    let quizData = res.data.results;
-
-    quizData.map(createQuestion)
-
-    // const res = await axios.get('/results');
-    // console.log( res.data );
-
-    // setUserDetails({
-    //   name: res.data.name,
-    //   city: res.data.city,
-    //   age: res.data.age
-    // })
+    loadQuizData(res.data.results);
   };
 
-
   return (
-    <div>
-      <h1>Hola from React!</h1>
+    <div className="quiz-body">
+      <h1>Welcome to the quiz!!</h1>
+
+      {quizData.map(createQuestionCard)}
+
       
+
     </div>
   );
 }
