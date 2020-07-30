@@ -5,8 +5,7 @@ import App from './components/App';
 // import QCard from './components/QCard';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+    <App />,
   document.getElementById('root')
 );
