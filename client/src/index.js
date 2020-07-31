@@ -5,7 +5,6 @@ import App from './components/App';
 // import QCard from './components/QCard';
 
 ReactDOM.render(
-
     <App />,
   document.getElementById('root')
 );
