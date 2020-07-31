@@ -28,10 +28,10 @@ function App() {
   console.log(quizData);
 
 
-  
-   async function savingAnswers( ){
+
+    function savingAnswers(){
     
-    const randomiseAnswers = await quizData && quizData.map( (quizDatum, index) => {
+    const randomiseAnswers = quizData && quizData.map( (quizDatum, index) => {
       // console.log("Extracting questions");
       // console.log(quizDatum.question);
 
@@ -44,7 +44,6 @@ function App() {
 
 
       // Array Shuffle function
-
         for (let i = 0; i < 10; i++) {
             for (let i = allAnswers.length - 1; i > 0; i--) {
                 let newIndex = Math.floor(Math.random() * (i + 1));
@@ -54,8 +53,8 @@ function App() {
             }
         };
 
-        return allAnswers;
 
+        return allAnswers;
     });
 
     setRandomAnswers();
