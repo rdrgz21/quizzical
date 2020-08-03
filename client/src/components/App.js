@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import './App.css';
 import axios from 'axios';
-import QCard from './QCard';
+import QCard from './qCard';
+import Timer from './Timer';
 
 class App extends Component {
     state = {
         quizData: [],
         randomAnswers: [],
-        userAnswer: null
+        userAnswer: null,
+       
     }
-
+    
     saveAnswers = (index) => {
         if (this.state.quizData.length > 0) {
             console.log('Quiz Data exists');
@@ -95,12 +97,16 @@ class App extends Component {
                 )
           });
         return (
+          <React.Fragment>
             <div className="quiz-body">
                 <h1>Welcome to the quiz!!</h1>
+                
+                <Timer />
 
                 { displayCards }
       
             </div>
+          </React.Fragment>
         )
     }
 }

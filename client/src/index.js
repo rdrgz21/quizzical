@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-// import QCard from './components/QCard';
+// import QCard from './components/qCard';
 
 ReactDOM.render(
     <App />,
