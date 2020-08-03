@@ -3,20 +3,74 @@ import './App.css';
 import axios from 'axios';
 import QCard from './QCard';
 import ResultsCard from './ResultsCard';
-import QuizSelection2 from './QuizSelection2';
+import QuizSelection from './QuizSelection';
 import Timer from './Timer';
 
 class Quiz extends Component {
     state = {
-        quizSelected: true,
+        quizSelected: false,
         quizData: [],
         questionsAnswered: 0,
         correctAnswerCount: 0,
         randomAnswers: [],
         userAnswer: null,
         category: 9,
-        difficulty: "easy"
+        difficulty: "easy",
+        seconds: 0
     }
+
+    // Choosing category and difficulty
+
+    selectCategory = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            category: event.target.value
+        })
+    }
+
+    selectDifficulty = (event) => {
+        console.log(event.target.value);
+        this.setState({
+            difficulty: event.target.value
+        })
+    }
+
+    selectQuiz = (event) => {
+        event.preventDefault();
+        this.getApi();
+        this.startTimer();
+    }
+
+    // Timer functions
+
+    startTimer = () => {
+        console.log("Starting timer");
+        this.myInterval = setInterval(() => {
+            this.setState(prevState => ({
+                seconds: prevState.seconds + 1
+            }))
+            // console.log(this.state.count)
+        }, 1000)
+    }
+
+    stopTimer = () => {
+        clearInterval(this.myInterval)
+    }
+
+    // Saving answers from API to randomAnswers
+
+    // Shuffling answers
+
+    shuffle = (array) => {
+        console.log('Shuffling array');
+        for (let i = 0; i < 1000; i++) {
+          let location1 = Math.floor((Math.random()*array.length));
+          let location2 = Math.floor((Math.random()*array.length));
+          let tmp = array[location1];
+          array[location1] = array[location2];
+          array[location2] = tmp;
+        }
+    };
     
     saveAnswers = (index) => {
         if (this.state.quizData.length > 0) {
@@ -46,34 +100,30 @@ class Quiz extends Component {
         }
     }
 
-    getApi = async () => {
-        // let category = this.state.category;
-        // let difficulty = this.state.difficulty;
+    // Calling API
 
-        const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`);
+    getApi = async () => {
+        let category = this.state.category;
+        let difficulty = this.state.difficulty;
+
+        const res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`);
         console.log(`Here is the quizData: ${res.data}`);
         this.setState({
-            quizData: res.data.results
+            quizData: res.data.results,
+            quizSelected: true
         }, () => {
             console.log(`Here is the loaded quiz data: ${this.state.quizData}`);
             this.saveAnswers();
         });
     };
 
-    componentDidMount() {
-        this.getApi();
-    }
+    // componentDidMount() {
+    //     this.getApi();
+    // }
 
-    shuffle = (array) => {
-        console.log('Shuffling array');
-        for (let i = 0; i < 1000; i++) {
-          let location1 = Math.floor((Math.random()*array.length));
-          let location2 = Math.floor((Math.random()*array.length));
-          let tmp = array[location1];
-          array[location1] = array[location2];
-          array[location2] = tmp;
-        }
-    };
+    // Radio button form functions
+
+    // Checking if correct answer
 
     checkAnswer = (inputAnswer, correctAnswer) => {
         console.log(`The user chose ${inputAnswer} and the correct answer was ${correctAnswer}`);
@@ -90,12 +140,16 @@ class Quiz extends Component {
         }
     }
 
+    // Selecting option
+
     onValueChange = (event) => {
         console.log(event.target.value);
         this.setState({
             userAnswer: event.target.value
         });
     }
+
+    // Submitting option
 
     formSubmit = (event) => {
         event.preventDefault();
@@ -106,16 +160,9 @@ class Quiz extends Component {
             questionsAnswered: this.state.questionsAnswered < 10 ? this.state.questionsAnswered + 1 : 10
         }, () => {
             console.log(`Questions answered: ${this.state.questionsAnswered}/10`);
-        });
-    }
-
-    selectQuiz = (categoryChosen, difficultyChosen) => {
-        console.log(`Quiz being selected. ${categoryChosen}, ${difficultyChosen}`);
-        this.setState({
-            category: categoryChosen,
-            difficulty: difficultyChosen
-        }, () => {
-            this.getApi();
+            if (this.state.questionsAnswered == 10) {
+                this.stopTimer();
+            }
         });
     }
 
@@ -175,15 +222,22 @@ class Quiz extends Component {
             <div className="quiz-body">
                 
                 { !this.state.quizSelected ? (
-                    <QuizSelection2 selectQuizFunc={this.selectQuiz} />
+                    <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
                 ) : null }
                 <h1>Welcome to the quiz!!</h1>
                 
-                <Timer />
+                { this.state.quizSelected ? (
+                    // <Timer seconds={this.seconds} startTimerFunc={this.startTimer} stopTimerFunc={this.stopTImer}/>
+                    <div>
+                        <p>Demo Timer: {this.state.seconds} </p> 
+                        <button onClick={this.startTimer}>To start</button>
+                        <button onClick={this.stopTimer}>To stop</button>
+                    </div>
+                ) : null }
 
                 { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
                 { this.state.questionsAnswered >= 10 ? (
-                    <ResultsCard score={this.state.correctAnswerCount} />
+                    <ResultsCard score={this.state.correctAnswerCount} time={this.state.seconds}/>
                 ) : (
                     null
                 )}
