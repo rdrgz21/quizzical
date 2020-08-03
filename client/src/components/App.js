@@ -4,6 +4,7 @@ import axios from 'axios';
 import QCard from './QCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection2 from './QuizSelection2';
+import Timer from './Timer';
 
 class App extends Component {
     state = {
@@ -11,12 +12,9 @@ class App extends Component {
         quizData: [],
         randomAnswers: [],
         userAnswer: null,
-        correctAnswerCount: 0,
-        questionsAnswered: 0,
-        category: 0,
-        difficulty: ""
+       
     }
-
+    
     saveAnswers = (index) => {
         if (this.state.quizData.length > 0) {
             console.log('Quiz Data exists');
@@ -177,6 +175,8 @@ class App extends Component {
                     <QuizSelection2 selectQuizFunc={this.selectQuiz} />
                 ) : null }
                 <h1>Welcome to the quiz!!</h1>
+                
+                <Timer />
 
                 { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
                 { this.state.questionsAnswered >= 10 ? (
