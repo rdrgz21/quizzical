@@ -97,7 +97,6 @@ class App extends Component {
                 )
           });
         return (
-          <React.Fragment>
             <div className="quiz-body">
                 <h1>Welcome to the quiz!!</h1>
                 
@@ -106,7 +105,6 @@ class App extends Component {
                 { displayCards }
       
             </div>
-          </React.Fragment>
         )
     }
 }
