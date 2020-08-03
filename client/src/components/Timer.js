@@ -16,7 +16,7 @@ class Timer extends Component {
                     this.setState(prevState => ({
                         count: prevState.count + 1
                     }))
-                    console.log(this.state.count)
+                    // console.log(this.state.count)
                 }, 1000)
         }
 
@@ -39,7 +39,7 @@ class Timer extends Component {
             this.setState(prevState => ({
                 count: prevState.count + 1
             }))
-            console.log(this.state.count)
+            // console.log(this.state.count)
         }, 1000)
     }
     
