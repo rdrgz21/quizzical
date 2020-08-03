@@ -5,7 +5,7 @@ export default function QCard(props) {
     return (
         <div>
             <h2>{props.qNo} {props.text}</h2>
-            <form onSubmit={props.formSubmitFunc}>
+            <form name={props.qNo} onSubmit={props.formSubmitFunc}>
 
                 <input 
                     type="radio" 
@@ -46,9 +46,7 @@ export default function QCard(props) {
                 />
                 <label htmlFor="answer4" >{props.answer4}</label>
                 <br />
-
-                <button type="submit">Submit</button>
-
+                <button type="submit">{props.submitBtnText}</button>
             </form>
         </div>
     )
