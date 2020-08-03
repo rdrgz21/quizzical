@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Quiz from './Quiz';
+import Login from './Login';
+import Register from './Register'
 
 class App extends Component {
     state = {
@@ -18,6 +20,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path = "/" render = {() => <Home />} />
                         <Route exact path = "/quiz" component = {Quiz} />
+                        <Route exact path = "/login" component = {Login} />
+                        <Route exact path = "/register" component = {Register} />
                     </Switch>
                 </BrowserRouter>
             </React.Fragment>

@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 
 export default class Login extends Component {
     render() {
-        state = {
-
-        }
+        // state = {}
+        
         return (
             <div>
                 <h1>Login Page</h1>
