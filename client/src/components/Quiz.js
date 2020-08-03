@@ -4,7 +4,6 @@ import axios from 'axios';
 import QCard from './QCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection from './QuizSelection';
-import Timer from './Timer';
 
 class Quiz extends Component {
     state = {
@@ -227,7 +226,6 @@ class Quiz extends Component {
                 <h1>Welcome to the quiz!!</h1>
                 
                 { this.state.quizSelected ? (
-                    // <Timer seconds={this.seconds} startTimerFunc={this.startTimer} stopTimerFunc={this.stopTImer}/>
                     <div>
                         <p>Demo Timer: {this.state.seconds} </p> 
                         <button onClick={this.startTimer}>To start</button>

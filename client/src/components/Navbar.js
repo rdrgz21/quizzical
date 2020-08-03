@@ -7,7 +7,7 @@ export default function Navbar() {
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
                 <a href="/quiz">Quiz</a>
-                <a href="/leaderboard">Login</a>
+                <a href="/leaderboard">Leaderboard</a>
             </nav>
         </div>
     )

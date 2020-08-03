@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css';
-import Timer from './Timer';
 import Navbar from './Navbar';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
@@ -18,7 +17,6 @@ class App extends Component {
                     <Navbar />
                     <Switch>
                         <Route exact path = "/" render = {() => <Home />} />
-                        <Route exact path = "/timer" component = {Timer} />
                         <Route exact path = "/quiz" component = {Quiz} />
                     </Switch>
                 </BrowserRouter>
