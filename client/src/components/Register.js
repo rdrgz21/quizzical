@@ -28,6 +28,12 @@ class Register extends Component {
         })
     }
 
+    recordPassword2 = (event) => {
+        this.setState({
+            inputPassword2: event.target.value
+        })
+    }
+
     submitForm = (event) => {
         event.preventDefault();
         console.log("Submitting form");
@@ -35,7 +41,7 @@ class Register extends Component {
     }
 
     registerUser = async () => {
-        console.log("Registering user");
+        console.log("Attempting to register user");
         
         const userDetails = {
             name: this.state.inputUsername,
@@ -43,18 +49,27 @@ class Register extends Component {
             password: this.state.inputPassword
         }
 
-        await axios.post('/register', userDetails)
+        if (this.state.inputPassword !== this.state.inputPassword2) {
+            this.setState({
+                message: "Please ensure your passwords match"
+            })
+        } else if (this.state.inputPassword === this.state.inputPassword2) {
+            await axios.post('/register', userDetails)
             .then(res => {
                 console.log(res.data);
+                this.setState({
+                    message: res.data
+                });
             }).catch((error) => {
                 console.log(error)
                 console.log("There was an error");
             });
-
+        }
         this.setState({ 
             inputUsername: '', 
             inputEmailAddress: '',
-            inputPassword: '' 
+            inputPassword: '',
+            inputPassword2: '' 
         })
     }
 
@@ -79,7 +94,7 @@ class Register extends Component {
                         <br />
                         <label htmlFor="userPassword2">Re-enter Password</label>
                         <br />
-                        <input type="password" name="userPassword2" id="userPassword2" required/>
+                        <input onChange={this.recordPassword2} type="password" name="userPassword2" id="userPassword2" value={this.state.inputPassword2} required/>
                         <br />
                         <button id="register-button" type="submit">Register</button>
                     </form>
