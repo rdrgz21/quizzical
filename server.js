@@ -18,6 +18,7 @@ mongoose.connect(process.env.DB_URL, {
 })
 .then(() => console.log("MongoDB is connected"));
 
+//Register Code-------------------------------------------------||
 app.get("/", (req, res) => {
     res.send("Hello from Nodejs");
     // res.render("http://localhost:3000/")
@@ -69,6 +70,11 @@ app.post("/register", async (req, res) => {
     //     });
     // }
 })
+//Register Code---------------------------------------------------||
+
+//Login Code------------------------------------------------------||
+
+//Login Code------------------------------------------------------||
 
 app.listen( 5000, () => {
     console.log("Server is running on port 5000");
