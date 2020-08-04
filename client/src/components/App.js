@@ -5,7 +5,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Quiz from './Quiz';
 import Login from './Login';
-import Register from './Register'
+import Register from './Register';
+import Leaderboard from './Leaderboard';
 
 class App extends Component {
     state = {
@@ -22,6 +23,7 @@ class App extends Component {
                         <Route exact path = "/quiz" component = {Quiz} />
                         <Route exact path = "/login" component = {Login} />
                         <Route exact path = "/register" component = {Register} />
+                        <Route exact path = "/leaderboard" component = {Leaderboard} />
                     </Switch>
                 </BrowserRouter>
             </React.Fragment>

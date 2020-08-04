@@ -40,15 +40,6 @@ app.post("/register", async (req, res) => {
     const otherUser = await User.find({ email: email});
     console.log(otherUser);
 
-    // await User.create(
-    //     {
-    //         name: name,
-    //         email: email,
-    //         password: hashedPassword
-    //     }
-    // )
-    // res.send("User registered");
-
     if (otherUser.length > 0) {
         res.send("Sorry, that email is already in use");
     } else {
@@ -61,6 +52,25 @@ app.post("/register", async (req, res) => {
         )
         res.send("User successfully registered");
     }
+});
+
+app.post("/results", async (req, res) => {
+    console.log("Attempting to submit score and time");
+    console.log(req.body);
+
+    // Will need to update ID to refelect logged in user
+    await User.findByIdAndUpdate("5f292b379a5c425ad4feafc8", req.body);
+
+    res.send("Score and time submitted");
+
+})
+
+app.get("/leaderboard", async (req, res) => {
+    console.log("Retrieving leaderboard data");
+
+    // const allUsers = await User.find({ "score": { "$exists": true } }).sort({'score': 1});
+    const allUsers = await User.find();
+    res.send(allUsers);
 })
 
 app.listen( 5000, () => {
