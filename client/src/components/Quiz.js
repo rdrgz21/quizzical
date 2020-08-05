@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import axios from 'axios';
-import QCard from './QCard';
+import QCard from './qCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection from './QuizSelection';
 
@@ -15,7 +15,8 @@ class Quiz extends Component {
         userAnswer: null,
         category: 9,
         difficulty: "easy",
-        seconds: 0
+        seconds: 0,
+        loggedIn: false
     }
 
     // Choosing category and difficulty
@@ -116,9 +117,23 @@ class Quiz extends Component {
         });
     };
 
-    // componentDidMount() {
-    //     this.getApi();
-    // }
+    componentDidMount() {
+        this.checkLogin()
+    }
+
+    checkLogin = async () => {
+        await axios.get('/quiz')
+        .then(res => {
+            console.log(`User is logged in: ${res.data}`);
+            this.setState({
+                loggedIn: res.data
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            console.log("There was an error")
+        });
+    }
 
     // Radio button form functions
 
@@ -218,28 +233,32 @@ class Quiz extends Component {
             };
         });
         return (
-            <div className="quiz-body">
-                
-                { !this.state.quizSelected ? (
-                    <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
-                ) : null }
-                <h1>Welcome to the quiz!!</h1>
-                
-                { this.state.quizSelected ? (
-                    <div>
-                        <p>Demo Timer: {this.state.seconds} </p> 
-                        <button onClick={this.startTimer}>To start</button>
-                        <button onClick={this.stopTimer}>To stop</button>
-                    </div>
-                ) : null }
+            <React.Fragment>
+              
+                    <div className="quiz-body">
+                        { !this.state.loggedIn && <h1>You are not logged in</h1>}
+                        { !this.state.quizSelected ? (
+                            <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
+                        ) : null }
+                        <h1>Welcome to the quiz!!</h1>
+                        
+                        { this.state.quizSelected ? (
+                            <div>
+                                <p>Demo Timer: {this.state.seconds} </p> 
+                                <button onClick={this.startTimer}>To start</button>
+                                <button onClick={this.stopTimer}>To stop</button>
+                            </div>
+                        ) : null }
 
-                { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
-                { this.state.questionsAnswered >= 10 ? (
-                    <ResultsCard score={this.state.correctAnswerCount} time={this.state.seconds}/>
-                ) : (
-                    null
-                )}
-            </div>
+                        { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
+                        { this.state.questionsAnswered >= 10 ? (
+                            <ResultsCard score={this.state.correctAnswerCount} time={this.state.seconds}/>
+                        ) : (
+                            null
+                        )}
+                    </div>
+
+            </React.Fragment>
         )
     }
 }

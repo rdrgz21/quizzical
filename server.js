@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
 const User = require('./models/user');
+const jwt = require('jsonwebtoken');
+const cookieparser = require('cookie-parser');
+const auth = require('./middleware/auth');
 
 dotenv.config( { path: './.env' } );
 
@@ -10,6 +13,7 @@ const app = express();
 
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(cookieparser());
 
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -19,6 +23,7 @@ mongoose.connect(process.env.DB_URL, {
 })
 .then(() => console.log("MongoDB is connected"));
 
+//Register Code-------------------------------------------------||
 app.get("/", (req, res) => {
     res.send("Hello from Nodejs");
     // res.render("http://localhost:3000/")
@@ -27,8 +32,6 @@ app.get("/", (req, res) => {
 app.post("/register", async (req, res) => {
     console.log("Attempting to register");
     console.log(req.body);
-
-
 
     const name = req.body.name;
     const email = req.body.email;
@@ -62,6 +65,71 @@ app.post("/register", async (req, res) => {
         res.send("User successfully registered");
     }
 })
+//Register Code---------------------------------------------------||
+
+
+//Login Code------------------------------------------------------||
+    app.get('/login', (req,res) => {
+        res.render('login')
+    })
+
+    app.post('/login', async (req,res) => {   
+
+        const email = req.body.email;
+        const password = req.body.password;
+
+
+        const user = await User.find({ email: email });
+        console.log( user );
+    
+        if( user.length > 0) {
+            const isMatch = await bcrypt.compare(password, user[0].password)
+            console.log( isMatch );
+        
+            if (isMatch) {
+
+                const token = jwt.sign( {id: user[0]._id}, process.env.JWT_SECRET, {
+                    expiresIn: process.env.JWT_EXPIRES_IN
+                });
+
+                console.log(token);
+
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                    ),
+                    httpOnly: true
+                }
+
+                res.cookie('jwt', token, cookieOptions)
+
+                res.send('Login successful');
+            } else {
+                res.send('Incorrect login details');
+            }
+        } else {
+            res.send("Login details Incorrect");
+        }
+})
+
+app.get("/quiz", auth.isLoggedIn, (req,res) => {
+    console.log("Checking if user is logged in")
+    if(req.foundUser) {
+        console.log("User is logged in");
+        res.send(true)
+    } else {
+        res.send("User is not logged in")
+    }
+});
+
+
+//Login Code------------------------------------------------------||
+
+app.get('/logout', auth.logout, (req,res) => {
+    console.log("inside logout page")
+    res.send('User is logged out')
+})
+
 
 app.listen( 5000, () => {
     console.log("Server is running on port 5000");
