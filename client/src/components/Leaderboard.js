@@ -12,7 +12,9 @@ class Leaderboard extends Component {
         .then(res => {
             console.log(res.data);
             this.setState({
-                topTen: res.data
+                topTen: res.data.slice(0, 9)
+            }, () => {
+                console.log(this.state.topTen);
             });
         }).catch((error) => {
             console.log(error);
@@ -28,7 +30,7 @@ class Leaderboard extends Component {
 
     render() {
         let userListItems = this.state.topTen.length > 0 && this.state.topTen.map((user, index) => {
-            return ( <li key={index}>{user.name}, {user.email}</li> )
+        return ( <li key={index}>{user.name} got a score of {user.score} in {user.time} seconds</li> )
         })
         return (
             <div>

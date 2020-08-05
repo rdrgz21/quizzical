@@ -53,6 +53,25 @@ export default class Login extends Component {
         });
     }
 
+    componentDidMount() {
+        this.checkLogin()
+    }
+
+    checkLogin = async () => {
+        await axios.get('/quiz')
+        .then(res => {
+            console.log(`User is logged in: ${res.data.loggedIn}`);
+            console.log(res.data.userId);
+            this.setState({
+                loggedIn: res.data.loggedIn
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            console.log("There was an error")
+        });
+    }
+    
 
 
 

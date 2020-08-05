@@ -76,8 +76,8 @@ app.post("/results", async (req, res) => {
 app.get("/leaderboard", async (req, res) => {
     console.log("Retrieving leaderboard data");
 
-    // const allUsers = await User.find({ "score": { "$exists": true } }).sort({'score': 1});
-    const allUsers = await User.find();
+    const allUsers = await User.find({ "score": { "$exists": true } }).sort({'score': -1, 'time': 1});
+    // const allUsers = await User.find();
     res.send(allUsers);
 })
 //Register Code---------------------------------------------------||
