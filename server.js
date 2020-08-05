@@ -61,11 +61,16 @@ app.post("/results", async (req, res) => {
     console.log("Attempting to submit score and time");
     console.log(req.body);
 
+
     // Will need to update ID to refelect logged in user
-    await User.findByIdAndUpdate("5f29368aa23061605efd7b6f", req.body);
+    await User.findByIdAndUpdate(req.body._id, req.body);
 
-    res.send("Score and time submitted");
-
+    res.send(
+        {
+            message: "Score and time submitted",
+            resultsSubmitted: true
+        }
+    );
 })
 
 app.get("/leaderboard", async (req, res) => {
@@ -113,12 +118,27 @@ app.post('/login', async (req,res) => {
 
             res.cookie('jwt', token, cookieOptions)
 
-            res.send('Login successful');
+            res.send(
+                {
+                    message: "Login successful",
+                    loggedIn: true
+                }
+            );
         } else {
-            res.send('Incorrect login details');
+            res.send(
+                {
+                    message: "Login unsuccessful",
+                    loggedIn: false
+                }
+            );
         }
     } else {
-        res.send("Login details Incorrect");
+        res.send(
+            {
+                message: "Login unsuccessful",
+                loggedIn: false
+            }
+        );
     }
 })
 
@@ -126,7 +146,13 @@ app.get("/quiz", auth.isLoggedIn, (req,res) => {
     console.log("Checking if user is logged in")
     if(req.foundUser) {
         console.log("User is logged in");
-        res.send(true)
+        res.send(
+            {
+                loggedIn: true,
+                userId: req.userId,
+                userName: req.foundUser.name
+            }
+        )
     } else {
         res.send("User is not logged in")
     }

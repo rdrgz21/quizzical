@@ -13,6 +13,7 @@ exports.isLoggedIn = async ( req, res, next ) => {
         console.log(theUser)
 
         req.foundUser = theUser;
+        req.userId = decoded.id; 
     }
     next();
 }

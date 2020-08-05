@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class Login extends Component {
     state = {
-        inputUsername: "",
         inputEmailAddress: "",
         inputPassword: "",
-        message: ""
-    }
-
-    recordUsername = (event) => {
-        this.setState({
-            inputUsername: event.target.value
-        })
+        message: "",
+        loggedIn: false
     }
 
     recordEmail = (event) => {
@@ -40,14 +35,17 @@ export default class Login extends Component {
         console.log("Attemping login");
 
         const userDetails = {
-            name: this.state.inputUsername,
             email: this.state.inputEmailAddress,
             password: this.state.inputPassword
         }
 
         await axios.post("/login", userDetails)
         .then(res => {
-            console.log(res.data)
+            console.log(res.data.message)
+            this.setState({
+                loggedIn: res.data.loggedIn,
+                message: res.data.message
+            })
         })
         .catch((error) => {
             console.log(error)
@@ -59,16 +57,19 @@ export default class Login extends Component {
 
 
     render() {
+        if (this.state.loggedIn) {
+            return <Redirect to="/quiz" />
+        }
         return (
             <div>
                 <h1>Login</h1>
                 <form onSubmit={this.submitForm}>
-                    <input onChange={this.recordUsername} value={this.state.inputUsername} type="string" placeholder="Username..." name="userName"/><br />
+                   
                     <input onChange={this.recordEmail} value={this.state.inputEmailAddress} type="email" placeholder="Email..." name="userEmail" /><br />
                     <input onChange={this.recordPassword} value={this.state.inputPassword} type="password" placeholder="Password..." name="userPassword"/><br />
                     <button type="submit">Login</button>
-
                 </form>
+                {this.state.message === "Login unsuccessful" ? (<h4>Try to register instead</h4>) : null}
         </div>
     )
 }
