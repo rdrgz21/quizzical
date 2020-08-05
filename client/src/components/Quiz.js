@@ -174,10 +174,32 @@ class Quiz extends Component {
             questionsAnswered: this.state.questionsAnswered < 10 ? this.state.questionsAnswered + 1 : 10
         }, () => {
             console.log(`Questions answered: ${this.state.questionsAnswered}/10`);
-            if (this.state.questionsAnswered == 10) {
+            if (this.state.questionsAnswered === 10) {
                 this.stopTimer();
             }
         });
+    }
+
+    submitToLeaderboard = async (event) => {
+        event.preventDefault();
+        const scoreAndTime = {
+            score: this.state.correctAnswerCount,
+            time: this.state.seconds
+        }
+        await axios.post('/results', scoreAndTime)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    message: res.data
+                });
+            }).catch((error) => {
+                console.log(error)
+                console.log("There was an error");
+            });
+        this.setState({ 
+            correctAnswerCount: '', 
+            questionsAnswered: ''
+        })
     }
 
     render() {
@@ -257,6 +279,18 @@ class Quiz extends Component {
                             null
                         )}
                     </div>
+
+                ) : null }
+
+                { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
+                { this.state.questionsAnswered >= 10 ? (
+                    <ResultsCard submitToLeaderboardFunc={this.submitToLeaderboard} score={this.state.correctAnswerCount} time={this.state.seconds}/>
+                ) : (
+                    null
+                )}
+                <h4>Message: {this.state.message}</h4>
+            </div>
+
 
             </React.Fragment>
         )
