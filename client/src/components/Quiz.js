@@ -16,7 +16,7 @@ class Quiz extends Component {
         category: 9,
         difficulty: "easy",
         seconds: 0,
-        loggedIn: false
+        message: ""
     }
 
     // Choosing category and difficulty
@@ -202,6 +202,28 @@ class Quiz extends Component {
         })
     }
 
+    submitToLeaderboard = async (event) => {
+        event.preventDefault();
+        const scoreAndTime = {
+            score: this.state.correctAnswerCount,
+            time: this.state.seconds
+        }
+        await axios.post('/results', scoreAndTime)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    message: res.data
+                });
+            }).catch((error) => {
+                console.log(error)
+                console.log("There was an error");
+            });
+        this.setState({ 
+            correctAnswerCount: '', 
+            questionsAnswered: ''
+        })
+    }
+
     render() {
         let displayCards = this.state.quizData.length > 0 && this.state.quizData.map( (quizDatum, index) => {
             if (index === 0) {
@@ -254,6 +276,7 @@ class Quiz extends Component {
                 )
             };
         });
+
         return (
             <React.Fragment>
               
@@ -274,23 +297,12 @@ class Quiz extends Component {
 
                         { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
                         { this.state.questionsAnswered >= 10 ? (
-                            <ResultsCard score={this.state.correctAnswerCount} time={this.state.seconds}/>
+                            <ResultsCard submitToLeaderboardFunc={this.submitToLeaderboard} score={this.state.correctAnswerCount} time={this.state.seconds}/>
                         ) : (
                             null
                         )}
+                        <h4>{this.state.message}</h4>
                     </div>
-
-                ) : null }
-
-                { this.state.quizSelected && this.state.questionsAnswered >= 0 ? displayCards : null}
-                { this.state.questionsAnswered >= 10 ? (
-                    <ResultsCard submitToLeaderboardFunc={this.submitToLeaderboard} score={this.state.correctAnswerCount} time={this.state.seconds}/>
-                ) : (
-                    null
-                )}
-                <h4>Message: {this.state.message}</h4>
-            </div>
-
 
             </React.Fragment>
         )
