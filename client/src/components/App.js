@@ -24,6 +24,8 @@ class App extends Component {
                         <Route exact path = "/login" component = {Login} />
                         <Route exact path = "/register" component = {Register} />
                         <Route exact path = "/leaderboard" component = {Leaderboard} />
+                        <Route exact path = "/logout" />
+
                     </Switch>
                 </BrowserRouter>
             </React.Fragment>
