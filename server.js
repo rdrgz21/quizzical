@@ -62,7 +62,7 @@ app.post("/results", async (req, res) => {
     console.log(req.body);
 
     // Will need to update ID to refelect logged in user
-    await User.findByIdAndUpdate("5f292b379a5c425ad4feafc8", req.body);
+    await User.findByIdAndUpdate("5f29368aa23061605efd7b6f", req.body);
 
     res.send("Score and time submitted");
 
@@ -79,47 +79,47 @@ app.get("/leaderboard", async (req, res) => {
 
 
 //Login Code------------------------------------------------------||
-    app.get('/login', (req,res) => {
-        res.render('login')
-    })
+app.get('/login', (req,res) => {
+    res.render('login')
+})
 
-    app.post('/login', async (req,res) => {   
+app.post('/login', async (req,res) => {   
 
-        const email = req.body.email;
-        const password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
 
 
-        const user = await User.find({ email: email });
-        console.log( user );
+    const user = await User.find({ email: email });
+    console.log( user );
+
+    if( user.length > 0) {
+        const isMatch = await bcrypt.compare(password, user[0].password)
+        console.log( isMatch );
     
-        if( user.length > 0) {
-            const isMatch = await bcrypt.compare(password, user[0].password)
-            console.log( isMatch );
-        
-            if (isMatch) {
+        if (isMatch) {
 
-                const token = jwt.sign( {id: user[0]._id}, process.env.JWT_SECRET, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                });
+            const token = jwt.sign( {id: user[0]._id}, process.env.JWT_SECRET, {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            });
 
-                console.log(token);
+            console.log(token);
 
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-                    ),
-                    httpOnly: true
-                }
-
-                res.cookie('jwt', token, cookieOptions)
-
-                res.send('Login successful');
-            } else {
-                res.send('Incorrect login details');
+            const cookieOptions = {
+                expires: new Date(
+                    Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                ),
+                httpOnly: true
             }
+
+            res.cookie('jwt', token, cookieOptions)
+
+            res.send('Login successful');
         } else {
-            res.send("Login details Incorrect");
+            res.send('Incorrect login details');
         }
+    } else {
+        res.send("Login details Incorrect");
+    }
 })
 
 app.get("/quiz", auth.isLoggedIn, (req,res) => {

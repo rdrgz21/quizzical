@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import axios from 'axios';
-import QCard from './qCard';
+import QCard from './QCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection from './QuizSelection';
 
