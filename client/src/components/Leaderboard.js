@@ -36,16 +36,16 @@ class Leaderboard extends Component {
             // </div> key={index}>{user.name} got a score of {user.score} in {user.time} seconds</li> )
 
             <div className="row">
-                <div class="column _25">
+                <div class="column _20 centered">
                     <p>{index+1}</p>
                 </div>
-                <div className="column _25">
+                <div className="column _40">
                     <p>{user.name}</p>
                 </div>
-                <div className="column _25">
+                <div className="column _20 centered">
                     <p>{user.score}</p>
                 </div>
-                <div className="column _25">
+                <div className="column _20 centered">
                     <p>{user.time}</p>
                 </div>
             </div>
@@ -60,16 +60,16 @@ class Leaderboard extends Component {
 
                 <div className="leaderboard-flexbox">
                     <div className="header">
-                        <div className="column _25">
+                        <div className="column _20 centered">
                             <p>Ranking</p>
                         </div>
-                        <div className="column _25">
+                        <div className="column _40">
                             <p>Username</p>
                         </div>
-                        <div className="column _25">
+                        <div className="column _20 centered">
                             <p>Score</p>
                         </div>
-                        <div className="column _25">
+                        <div className="column _20 centered">
                             <p>Time</p>
                         </div>
                     </div>

@@ -21,18 +21,22 @@
 }
 
 .title-box {
-    /* height: 80vh; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    padding: 10vh 0 5vh 0;
+    line-height: 0;
 }
 
 .bottom-container {
-    width: 40%;
+    width: 50%;
+    /* background-color: yellow; */
 }
 
 h2 {
     font-family: 'Shrikhand', cursive;
     line-height: 50%;
     color: black;
+}
+
+.lets-get {
+    color: white;
+    font-size: 2em;
 }

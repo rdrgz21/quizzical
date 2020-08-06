@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import './Login.css';
 
 export default class Login extends Component {
     state = {
@@ -80,16 +81,19 @@ export default class Login extends Component {
             return <Redirect to="/quiz" />
         }
         return (
-            <div>
-                <h1>Login</h1>
-                <form onSubmit={this.submitForm}>
-                   
-                    <input onChange={this.recordEmail} value={this.state.inputEmailAddress} type="email" placeholder="Email..." name="userEmail" /><br />
-                    <input onChange={this.recordPassword} value={this.state.inputPassword} type="password" placeholder="Password..." name="userPassword"/><br />
-                    <button type="submit">Login</button>
-                </form>
-                {this.state.message === "Login unsuccessful" ? (<h4>Try to register instead</h4>) : null}
-        </div>
+            <div className="login-flexbox">
+                <div className="login-container">
+                    <h1>Login</h1>
+                    <form onSubmit={this.submitForm}>
+                        <label className="login-label" htmlFor="userEmail">User email address:</label><br />
+                        <input className="login-input" onChange={this.recordEmail} value={this.state.inputEmailAddress} type="email" placeholder="example@email.com" name="userEmail" /><br />
+                        <label className="login-label" htmlFor="userPassword">Password:</label><br />
+                        <input className="login-input" onChange={this.recordPassword} value={this.state.inputPassword} type="password" placeholder="" name="userPassword"/><br />
+                        <button className="login-button" type="submit">Login</button>
+                    </form>
+                    {this.state.message === "Login unsuccessful" ? (<h4>Try to register instead</h4>) : null}
+                </div>
+            </div>
     )
 }
 }

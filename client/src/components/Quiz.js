@@ -278,7 +278,7 @@ class Quiz extends Component {
                 <React.Fragment>
                   
                         <div className="quiz-body">
-                            <h1>Welcome to the quiz, {this.state.userName}!!</h1>
+                            <h1 className="welcome-text">Welcome to the quiz, {this.state.userName}!!</h1>
                             { !this.state.loggedIn && <h1>You are not logged in</h1>}
                             { !this.state.quizSelected && this.state.loggedIn ? (
                                 <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
