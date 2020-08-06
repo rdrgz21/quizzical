@@ -8,6 +8,7 @@
 
 .login-container {
     border: 10px solid #6983aa;
+    border-radius: 10px;
     margin: 0 auto;
     width: 50%;
     background: rgba(255, 255, 255, 0.6);

@@ -1,5 +1,6 @@
 .form-container {
     border: 10px solid #6983aa;
+    border-radius: 10px;
     margin: 0 auto;
     width: 40%;
     height: 100%;
