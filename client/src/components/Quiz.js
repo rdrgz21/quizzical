@@ -5,6 +5,7 @@ import QCard from './QCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection from './QuizSelection';
 import { Redirect } from 'react-router-dom';
+import './Quiz.css';
 
 class Quiz extends Component {
     state = {

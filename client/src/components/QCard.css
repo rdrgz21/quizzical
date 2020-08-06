@@ -1,5 +1,26 @@
 .qcard {
-    border: 2px solid orange;
+    border: 10px solid #6983aa;
     margin: 0 auto;
     width: 60%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    position: relative;
+
 }
+
+.qcard h2 {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 2em;
+}
+
+form, input, label, .option {
+    display: inline-block;
+}
+
+/* .qcard-button {
+    position: absolute;
+    right: 10%;
+    bottom: 25%;
+} */
