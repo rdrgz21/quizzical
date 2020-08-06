@@ -286,9 +286,9 @@ class Quiz extends Component {
                             
                             { this.state.quizSelected ? (
                                 <div>
-                                    <p>Demo Timer: {this.state.seconds} </p> 
-                                    <button onClick={this.startTimer}>To start</button>
-                                    <button onClick={this.stopTimer}>To stop</button>
+                                    <p>Timer: {this.state.seconds} </p> 
+                                    {/* <button onClick={this.startTimer}>To start</button>
+                                    <button onClick={this.stopTimer}>To stop</button> */}
                                 </div>
                             ) : null }
     

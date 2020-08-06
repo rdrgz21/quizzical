@@ -23,7 +23,6 @@ export default function QuizSelection(props) {
                     <option value="22">Geography</option>
                     <option value="23">History</option>
                     <option value="24">Politics</option>
-                    <option value="25">Art</option>
                     <option value="26">Celebrities</option>
                     <option value="27">Animals</option>
                     <option value="28">Vehicles</option>
