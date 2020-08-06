@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
+import './QuizSelection.css';
 
 export default function QuizSelection(props) {
     return (
-        <div>
+        <div className="form-container">
             <form name="Select quiz form" onSubmit={props.selectQuizFunc}>
-                <label htmlFor="category">Select a category:</label>
+                <label className="quiz-selection-label" htmlFor="category">Select a category:</label>
                 <br />
-                <select name="category" id="category" onChange={props.selectCategoryFunc}>
+
+                <select className="quiz-selection-select" name="category" id="category" onChange={props.selectCategoryFunc}>
                     <option value="9">General Knowledge</option>
                     <option value="10">Books</option>
                     <option value="11">Film</option>
@@ -31,16 +33,19 @@ export default function QuizSelection(props) {
                     <option value="31">Japanese Anime & Manga</option>
                     <option value="32">Cartoon & Animations</option>
                 </select>
+    
                 <br />
-                <label htmlFor="difficulty">Select difficulty:</label>
+                <label className="quiz-selection-label" htmlFor="difficulty">Select difficulty:</label>
                 <br />
-                <select name="difficulty" id="difficulty" onChange={props.selectDifficultyFunc}>
+
+                <select className="quiz-selection-select" name="difficulty" id="difficulty" onChange={props.selectDifficultyFunc}>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
+
                 <br />
-                <button type="submit">Submit</button>
+                <button className="quiz-selection-button" type="submit">Submit</button>
             </form>
         </div>
     )

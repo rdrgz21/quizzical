@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import './Register.css';
 
 class Register extends Component {
     state = {
@@ -105,29 +106,30 @@ class Register extends Component {
         }
         return (
             <React.Fragment>
-                <h1>Register Page</h1>
-                <div className="registration-form-container">
-                    <h3 className="registration-form-text heading">Register</h3>
-                    <form onSubmit={this.submitForm}>
-                        <label htmlFor="userName">Username</label>
-                        <br />
-                        <input onChange={this.recordUsername} type="text" name="userName" value={this.state.inputUsername} id="userName" required/>
-                        <br />
-                        <label htmlFor="userEmail">Email Address</label>
-                        <br />
-                        <input onChange={this.recordEmail} type="email" name="userEmail" value={this.state.inputEmailAddress} id="userEmail" required/>
-                        <br />
-                        <label htmlFor="userPassword">Password</label>
-                        <br />
-                        <input onChange={this.recordPassword} type="password" name="userPassword" value={this.state.inputPassword} id="userPassword" required/>
-                        <br />
-                        <label htmlFor="userPassword2">Re-enter Password</label>
-                        <br />
-                        <input onChange={this.recordPassword2} type="password" name="userPassword2" id="userPassword2" value={this.state.inputPassword2} required/>
-                        <br />
-                        <button id="register-button" type="submit">Register</button>
-                    </form>
-                    {this.state.message ? <h4 className="registration-form-text message">{this.state.message}</h4> : null}
+                <div className="register-flexbox">
+                    <div className="register-container">
+                        <h1>Register</h1>
+                        <form onSubmit={this.submitForm}>
+                            <label className="register-label" htmlFor="userName">Username</label>
+                            <br />
+                            <input className="register-input" onChange={this.recordUsername} type="text" name="userName" value={this.state.inputUsername} id="userName" required/>
+                            <br />
+                            <label className="register-label" htmlFor="userEmail">Email Address</label>
+                            <br />
+                            <input className="register-input" onChange={this.recordEmail} type="email" name="userEmail" value={this.state.inputEmailAddress} id="userEmail" required/>
+                            <br />
+                            <label className="register-label" htmlFor="userPassword">Password</label>
+                            <br />
+                            <input className="register-input" onChange={this.recordPassword} type="password" name="userPassword" value={this.state.inputPassword} id="userPassword" required/>
+                            <br />
+                            <label className="register-label" htmlFor="userPassword2">Re-enter Password</label>
+                            <br />
+                            <input className="register-input" onChange={this.recordPassword2} type="password" name="userPassword2" id="userPassword2" value={this.state.inputPassword2} required/>
+                            <br />
+                            <button id="register-button" type="submit">Register</button>
+                        </form>
+                        {this.state.message ? <h4 className="registration-form-text message">{this.state.message}</h4> : null}
+                    </div>
                 </div>
             </React.Fragment>
         )

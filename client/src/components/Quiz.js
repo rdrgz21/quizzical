@@ -278,10 +278,23 @@ class Quiz extends Component {
                 <React.Fragment>
                   
                         <div className="quiz-body">
+
+                            <h1 className="welcome-text">Welcome to the quiz, {this.state.userName}!!</h1>
+                            { !this.state.loggedIn && <h1>You are not logged in</h1>}
+                            { !this.state.quizSelected && this.state.loggedIn ? (
+                                <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
+                            ) : null }
+                            
+                            
+                            { this.state.quizSelected ? (
+                                <div>
+                                    <p>Timer: {this.state.seconds} </p> 
+
                         
                         { this.state.quizSelected ? (
                                 <div className="timerBox">
                                     <p id="timer">Timer: {this.state.seconds} </p> 
+
                                     {/* <button onClick={this.startTimer}>To start</button>
                                     <button onClick={this.stopTimer}>To stop</button> */}
                                 </div>
