@@ -1,0 +1,25 @@
+nav {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+a:hover {
+    background-color: #6983aa;
+}
+
+#logout-link {
+    align-self: flex-end;
+    position: absolute;
+    right: 0;
+
+}

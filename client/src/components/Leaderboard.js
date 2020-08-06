@@ -30,13 +30,51 @@ class Leaderboard extends Component {
 
     render() {
         let userListItems = this.state.topTen.length > 0 && this.state.topTen.map((user, index) => {
-        return ( <li key={index}>{user.name} got a score of {user.score} in {user.time} seconds</li> )
+        return ( 
+            // <div className="leaderboard-row">
+
+            // </div> key={index}>{user.name} got a score of {user.score} in {user.time} seconds</li> )
+
+            <div className="row">
+                <div class="column _25">
+                    <p>{index+1}</p>
+                </div>
+                <div className="column _25">
+                    <p>{user.name}</p>
+                </div>
+                <div className="column _25">
+                    <p>{user.score}</p>
+                </div>
+                <div className="column _25">
+                    <p>{user.time}</p>
+                </div>
+            </div>
+        )
         })
         return (
             <div>
-                <ol>
+
+                {/* <ol>
                     {userListItems}
-                </ol>
+                </ol> */}
+
+                <div className="leaderboard-flexbox">
+                    <div className="header">
+                        <div className="column _25">
+                            <p>Ranking</p>
+                        </div>
+                        <div className="column _25">
+                            <p>Username</p>
+                        </div>
+                        <div className="column _25">
+                            <p>Score</p>
+                        </div>
+                        <div className="column _25">
+                            <p>Time</p>
+                        </div>
+                    </div>
+                    {userListItems}
+                </div>
             </div>
         )
     }

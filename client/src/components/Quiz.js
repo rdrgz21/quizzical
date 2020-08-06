@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import axios from 'axios';
-import QCard from './qCard';
+import QCard from './QCard';
 import ResultsCard from './ResultsCard';
 import QuizSelection from './QuizSelection';
 import { Redirect } from 'react-router-dom';
@@ -219,7 +219,7 @@ class Quiz extends Component {
             if (index === 0) {
                 return (
                     <QCard 
-                    className="visible-qcard"
+                    className="visible-QCard"
                     key={index} 
                     qNo={index+1} 
                     text={quizDatum.question}
@@ -235,7 +235,7 @@ class Quiz extends Component {
             } else if (index > 0 && index < 9){
                 return (
                     <QCard
-                    className="invisible-qcard"
+                    className="invisible-QCard"
                     key={index} 
                     qNo={index+1} 
                     text={quizDatum.question}
@@ -251,7 +251,7 @@ class Quiz extends Component {
             } else if (index === 9) {
                 return (
                     <QCard
-                    className="invisible-qcard"
+                    className="invisible-QCard"
                     key={index} 
                     qNo={index+1} 
                     text={quizDatum.question}

@@ -1,3 +1,32 @@
-ol {
-    border: 10px green solid;
+.leaderboard-flexbox {
+    border: solid 10px #6983aa;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row, .header {
+    width: 100%;
+    display: flex;
+}
+
+.header {
+    background-color: #6983aa;
+}
+
+.column {
+    display: inline-block;
+}
+
+._25 {
+    flex: 0.25;
+}
+
+.row:nth-child(2n+1) {
+    background-color: rgb(163, 157, 157);
+}
+
+.row:nth-child(2n+1) p, .row:nth-child(2n+1) a {
+    color: black;
 }

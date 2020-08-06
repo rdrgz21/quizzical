@@ -1,0 +1,38 @@
+.flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    /* background-color: yellow; */
+}
+
+.quizzical-title {
+    font-size: 6em;
+    /* color: #8ec6c5; */
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    /* letter-spacing: 7px; */
+    /* line-height: 0;
+    -webkit-box-shadow: 0px 0px 0px 12px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 0px 12px rgba(255,255,255,1);
+    box-shadow: 0px 0px 0px 12px rgba(255,255,255,1); */
+}
+
+.title-box {
+    /* height: 80vh; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.bottom-container {
+    width: 40%;
+}
+
+h2 {
+    font-family: 'Shrikhand', cursive;
+    line-height: 50%;
+    color: black;
+}

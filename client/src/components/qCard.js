@@ -1,9 +1,10 @@
 import React from 'react';
+import './QCard.css';
 
 
 export default function QCard(props) {
     return (
-        <div>
+        <div className="qcard">
             <h2>{props.qNo} {props.text}</h2>
             <form name={props.qNo} onSubmit={props.formSubmitFunc}>
 

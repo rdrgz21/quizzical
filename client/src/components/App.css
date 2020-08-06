@@ -1,5 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Shrikhand&display=swap');
+
 .App {
   text-align: center;
+}
+
+body {
+  background: url('../static/questionMarksBlur.jpg'), linear-gradient(rgba(103, 52, 151, 0.7),rgba(168, 130, 219, 0.7));
+  background-blend-mode: overlay;
+  border: 20px solid #8ec6c5;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+h1, h1 {
+  font-family: 'Shrikhand', cursive;
+}
+
+
+
+a {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .quiz-body {
