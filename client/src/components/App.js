@@ -25,7 +25,7 @@ class App extends Component {
                         <Route exact path = "/register" component = {Register} />
                         <Route exact path = "/leaderboard" component = {LeaderboardPage} />
                         <Route exact path = "/logout" component = {Home} />
-
+            
                     </Switch>
                 </BrowserRouter>
             </React.Fragment>

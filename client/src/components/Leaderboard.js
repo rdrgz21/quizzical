@@ -12,7 +12,7 @@ class Leaderboard extends Component {
         .then(res => {
             console.log(res.data);
             this.setState({
-                topTen: res.data.slice(0, 9)
+                topTen: res.data.slice(0, 10)
             }, () => {
                 console.log(this.state.topTen);
             });
