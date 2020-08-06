@@ -5,18 +5,19 @@ import './QCard.css';
 export default function QCard(props) {
     return (
         <div className="qcard">
-            <h2>Question {props.qNo}</h2>
+            <h2 id="qText">Question {props.qNo}</h2>
             <h2>{props.text}</h2>
             <form name={props.qNo} onSubmit={props.formSubmitFunc}>
                 <div className="option">
-                    <input 
+                    <input
                         type="radio" 
                         id="answer1" 
-                        name="questionAnswer" 
+                        name="questionAnswer"
+                        // checked= "checked" 
                         value={props.answer1}
                         onChange={props.onValueChangeFunc}
                     />
-                    <label htmlFor="answer1" >{props.answer1}</label>
+                    <label className="btnStyle" htmlFor="answer1" >{props.answer1}</label>
                 </div>
                 <div className="option">
                     <input 
@@ -26,7 +27,7 @@ export default function QCard(props) {
                         value={props.answer2}
                         onChange={props.onValueChangeFunc}
                     />
-                    <label htmlFor="answer2" >{props.answer2}</label>
+                    <label className="btnStyle" htmlFor="answer2" >{props.answer2}</label>
                 </div>
                 <div className="option">
                     <input 
@@ -36,7 +37,7 @@ export default function QCard(props) {
                         value={props.answer3}
                         onChange={props.onValueChangeFunc} 
                     />
-                    <label htmlFor="answer3" >{props.answer3}</label>
+                    <label className="btnStyle" htmlFor="answer3" >{props.answer3}</label>
                 </div>
                 <div className="option">
                     <input 
@@ -46,7 +47,7 @@ export default function QCard(props) {
                         value={props.answer4}
                         onChange={props.onValueChangeFunc} 
                     />
-                    <label htmlFor="answer4" >{props.answer4}</label>
+                    <label className="btnStyle" htmlFor="answer4" >{props.answer4}</label>
                 </div>
                 <br />
                 <br />
