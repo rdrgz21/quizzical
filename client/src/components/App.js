@@ -6,7 +6,6 @@ import Home from './Home';
 import Quiz from './Quiz';
 import Login from './Login';
 import Register from './Register';
-import LeaderboardPage from './LeaderboardPage';
 
 class App extends Component {
     state = {
@@ -23,7 +22,6 @@ class App extends Component {
                         <Route exact path = "/quiz" component = {Quiz} />
                         <Route exact path = "/login" component = {Login} />
                         <Route exact path = "/register" component = {Register} />
-                        <Route exact path = "/leaderboard" component = {LeaderboardPage} />
                         <Route exact path = "/logout" component = {Home} />
             
                     </Switch>
