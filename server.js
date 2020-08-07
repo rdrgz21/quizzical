@@ -142,6 +142,22 @@ app.post('/login', async (req,res) => {
     }
 })
 
+// app.get("/quiz", auth.isLoggedIn, (req,res) => {
+//     console.log("Checking if user is logged in")
+//     if(req.foundUser) {
+//         console.log("User is logged in");
+//         res.send(
+//             {
+//                 loggedIn: true,
+//                 userId: req.userId,
+//                 userName: req.foundUser.name
+//             }
+//         )
+//     } else {
+//         res.send("User is not logged in")
+//     }
+// });
+
 app.get("/quiz", auth.isLoggedIn, (req,res) => {
     console.log("Checking if user is logged in")
     if(req.foundUser) {
@@ -150,7 +166,9 @@ app.get("/quiz", auth.isLoggedIn, (req,res) => {
             {
                 loggedIn: true,
                 userId: req.userId,
-                userName: req.foundUser.name
+                userName: req.foundUser.name,
+                userScore: req.foundUser.score,
+                userTime: req.foundUser.time
             }
         )
     } else {
