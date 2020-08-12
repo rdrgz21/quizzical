@@ -26,9 +26,6 @@ export default class Login extends Component {
     submitForm = async (event) => {
         event.preventDefault();
         console.log("Submitting form");
-        // console.log(this.state.inputUsername);
-        // console.log(this.state.inputEmailAddress);
-        // console.log(this.state.inputPassword);
         this.loginUser();
     }
 
@@ -82,9 +79,9 @@ export default class Login extends Component {
                 <div className="login-container">
                     <h1>Login</h1>
                     <form onSubmit={this.submitForm}>
-                        <label className="login-label" htmlFor="userEmail">User email address:</label><br />
-                        <input className="login-input" onChange={this.recordEmail} value={this.state.inputEmailAddress} type="email" placeholder="example@email.com" name="userEmail" /><br />
-                        <label className="login-label" htmlFor="userPassword">Password:</label><br />
+                        <label className="login-label" htmlFor="userEmail">Email Address</label><br />
+                        <input className="login-input" onChange={this.recordEmail} value={this.state.inputEmailAddress} type="email" name="userEmail" /><br />
+                        <label className="login-label" htmlFor="userPassword">Password</label><br />
                         <input className="login-input" onChange={this.recordPassword} value={this.state.inputPassword} type="password" placeholder="" name="userPassword"/><br />
                         <button className="login-button" type="submit">Login</button>
                     </form>

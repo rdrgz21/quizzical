@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
     height: 100vh;
 }
 
@@ -46,7 +45,6 @@
 }
 
 #register-button {
-    /* margin: 2em 0; */
     margin: 1em;
     padding: 3px 6px 3px 6px;
     font-size: 20px;

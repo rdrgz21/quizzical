@@ -24,8 +24,10 @@
 //             console.log("There was an error")
 //         });
 //     }
+    
 //     return (
-//         { !loading ? (
+//         // 
+//         if (loading) {
 //             <div>
 //                 <div className="flexbox">
 //                     <div className="title-box">
@@ -39,7 +41,10 @@
 //                     </div>
 //                 </div>
 //             </div>
-//         ) : null}
+//         } else {
+//             return null;
+//         }
+//         // ) : null}
 //     )
 // }
 

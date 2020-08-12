@@ -57,7 +57,6 @@ class Quiz extends Component {
             this.setState(prevState => ({
                 seconds: prevState.seconds + 1
             }))
-            // console.log(this.state.count)
         }, 1000)
     }
 
@@ -302,15 +301,7 @@ class Quiz extends Component {
                         <div className="timerBox">
                             <p id="timer">Timer: {this.state.seconds} </p> 
                         </div>
-                    ) : null }
-
-                    {/* <h1 className="welcome-text">Welcome to the quiz, {this.state.userName}!!</h1>
-                    { !this.state.loggedIn && <h1>You are not logged in</h1>}
-                    { !this.state.quizSelected && this.state.loggedIn ? (
-                        <QuizSelection selectCategoryFunc={this.selectCategory} selectDifficultyFunc={this.selectDifficulty} selectQuizFunc={this.selectQuiz} />
-                    ) : null } */}
-                
-                    
+                    ) : null }        
 
                     { !this.state.loading && !this.state.quizSelected ? (<h1 id="greeting">Welcome to the quiz {this.state.userName}!!</h1>) : null }
                     { !this.state.loading && !this.state.loggedIn && <h1>You are not logged in</h1>}

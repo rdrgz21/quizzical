@@ -1,22 +1,3 @@
-// import React, { Component } from 'react'
-// // import axios from 'axios';
-
-// class Highscore extends Component {
-//     state = {
-//         topTen: []
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h1>Your highscore!</h1>
-//             </div>
-//         )
-//     }
-// }
-
-// export default Highscore;
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Highscore.css';
@@ -57,15 +38,11 @@ class Highscore extends Component {
   render() {
         return (
             <React.Fragment>
-                {/* { !this.state.loading && !this.state.loggedIn ? 
-                    ( */}
                         <div>
                             <h2 id="message"> Hello {this.state.userName}! </h2> 
                             <h3 className="gDetails">Latest score: {this.state.userScore} points!</h3>
                             <h3 className="gDetails">Latest time: {this.state.userTime} seconds!</h3>
                         </div>
-                    {/* ) : null 
-                } */}
             </React.Fragment>
         );
     }
